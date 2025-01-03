@@ -1,0 +1,1 @@
+Usually the input image would store here & extracted frames would be stored in a sub-folder in here too
