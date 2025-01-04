@@ -36,7 +36,7 @@ Zoom in of the output image:
 
 ## How does it work?
 
-1. Extract frame from the video every N seconds, then crop it's center out as a square image, resize it and save it.
+1. Extract frame from the video every N millisecond, then crop it's center out as a square image, resize it and save it. (Set it to 1000 to extract a frame every 1 second)
 
 2. Loop through every images saved, calculate the average color of them and save the calculation result as a JSON file.
 
