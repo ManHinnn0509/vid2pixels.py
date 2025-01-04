@@ -2,6 +2,10 @@
 
 Turn video frames into pixels for an image
 
+- [How to use](#how-to-use)
+- [Example](#example)
+- [How does it work?](#how-does-it-work)
+
 ## How to use
 
 1. Install requirements in [requirements.txt](./requirements.txt)
@@ -31,3 +35,9 @@ Zoom in of the output image:
 <img src="./examples/zoom-in.png" alt="output-zoom-in">
 
 ## How does it work?
+
+1. Extract frame from the video every N seconds, then crop it's center out as a square image, resize it and save it.
+
+2. Loop through every images saved, calculate the average color of them and save the calculation result as a JSON file.
+
+3. Loop through every pixels in the input image, find the closest image of that pixel's color. Then paste the closest image to the output image file.
