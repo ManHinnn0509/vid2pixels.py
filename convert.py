@@ -11,6 +11,9 @@ def main():
 
     d = read_img_dict(DICT_PATH)
 
+    # Pre-load the frames that will be used as pixels
+    preloaded = preload_img(d)
+
     # Read width, height from input image
     in_img = Image.open(INPUT_IMG)
     in_w, in_h = in_img.size
@@ -27,9 +30,8 @@ def main():
         for x in range(in_w):
             pixel = pixels[x, y]
             closest_img = find_closest_img(pixel, d)
-            img = Image.open(closest_img)
+            img = preloaded[closest_img]
             out_img.paste(img, (cw, ch))
-            img.close()
             cw += size
         cw = 0
         ch += size
@@ -40,6 +42,13 @@ def main():
 
     print("--- End of Program ---")
 
+def preload_img(d: dict):
+    preloaded = {}
+    for img_path in d.keys():
+        img = Image.open(img_path)
+        preloaded[img_path] = img
+    
+    return preloaded
 
 def read_img_dict(path: str):
     """Reads the img dict, converts RGB value from `list` to `np.ndarray`
